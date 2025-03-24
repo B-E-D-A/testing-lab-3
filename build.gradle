@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+//group = 'org.usvm'
+version = '1.0-SNAPSHOT'
+
+jacoco {
+    toolVersion = "0.8.12"
+}
+
+allure {
+    version = '2.24.0' // Версия Allure
+    autoconfigure = true
+    useJUnit5 {
+        version = '2.24.0' // Версия Allure для JUnit 5
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("io.javalin:javalin:6.4.0")
+    implementation("org.slf4j:slf4j-simple:2.0.16")
+    implementation("com.google.code.gson:gson:2.12.1")
+    implementation ('com.fasterxml.jackson.core:jackson-databind:2.15.2')
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation("io.rest-assured:rest-assured:5.5.1")
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation("org.mockito:mockito-core:5.15.2")
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+    finalizedBy allureReport
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = true
+        html.required = true
+    }
+}
+
+allureReport {
+}
