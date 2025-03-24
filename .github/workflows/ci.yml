@@ -73,3 +73,9 @@ jobs:
 
       - name: Run SpotBugs
         run: ./gradlew spotbugsMain
+
+      - name: Upload SpotBugs report
+        uses: actions/upload-artifact@v4
+        with:
+          name: spotbugs-report
+          path: build/reports/spotbugs/*.xml
