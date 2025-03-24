@@ -78,4 +78,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: spotbugs-report
-          path: build/reports/spotbugs/*.xml
+          path: |
+            build/reports/spotbugs/*.xml
+            build/reports/spotbugs/*.html

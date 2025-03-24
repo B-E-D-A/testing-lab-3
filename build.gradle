@@ -10,6 +10,15 @@ version = '1.0-SNAPSHOT'
 
 spotbugs {
     toolVersion = '4.9.3'
+    showProgress = true
+    reportsDir = file("$buildDir/reports/spotbugs")
+}
+
+tasks.withType(com.github.spotbugs.snom.SpotBugsTask) {
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }
 
 jacoco {
