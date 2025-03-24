@@ -70,3 +70,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: build/reports/allure-report/allureReport
           publish_branch: gh-pages
+
+      - name: Run SpotBugs
+        run: ./gradlew spotbugsMain
